@@ -4,9 +4,9 @@
 Mehdi Ghoulam <med@gelk.fr>
 
 - Suite du projet : 
-Michelozzi Matthieu
-Mirande Clémentine
 
+Michelozzi Matthieu,
+Mirande Clémentine
 
 
 ## Structure du projet
