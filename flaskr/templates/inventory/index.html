@@ -4,17 +4,6 @@
 
 {% block content %}
 <main class="p-10 max-w-5xl mx-auto text-steel-gray-50">
-  {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-  {% for category, message in messages %}
-  <div
-    class="p-3 mb-2 w-fit rounded-md {% if category == 'error' %}bg-red-500 text-white{% else %}bg-gray-500 text-white{% endif %}">
-    {{category}}
-    <p>{{ message }}</p>
-  </div>
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
 
   <div class="flex flex-row items-center justify-between mb-5">
     <h1 class="text-2xl font-bold">Inventory</h1>
@@ -58,7 +47,7 @@
             </p>
           </td>
           <td class="py-4 space-x-1">
-            <a href="{{ url_for('inventory.edit', id=item.id) }}">
+            <a href="{{ url_for('inventory.view', id=item.id) }}">
               <span class="text-blue-violet-500 underline">edit</span>
             </a>
 
@@ -83,7 +72,7 @@
         return;
       }
 
-      fetch(`/delete/${itemId}`, {
+      fetch(`/inventory/${itemId}`, {
         method: 'DELETE',
       })
         .then((response) => {

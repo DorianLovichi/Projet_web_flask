@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
+<main class="grid place-items-center py-10">
+
+  <a href="{{ url_for('inventory.index') }}" class="text-sm text-blue-violet-500 hover:underline">
+    <div class="bg-steel-gray-950 text-steel-gray-50 space-y-10 p-4 rounded-md shadow-lg">
+      <h1 class="text-xl font-bold">Inventory Module</h1>
+    </div>
+  </a>
+
+</main>
+
+{% endblock %}

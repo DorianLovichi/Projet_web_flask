@@ -1,18 +1,33 @@
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import Blueprint, g, flash, redirect, render_template, request, url_for
 from werkzeug.exceptions import abort
 from flaskr.db import get_db
+from . import auth
 
-bp = Blueprint("inventory", __name__)
+bp = Blueprint("inventory", __name__, url_prefix="/inventory")
+
+
+def get_item(id):
+    item = get_db().execute("SELECT * FROM items WHERE id = ?", (id,)).fetchone()
+
+    if item is None:
+        abort(404, f"Item id {id} doesn't exist.")
+
+    return item
 
 
 @bp.route("/")
+@auth.login_required
 def index():
     db = get_db()
-    items = db.execute("SELECT * FROM items").fetchall()
+
+    items = db.execute(
+        "SELECT * FROM items WHERE user_id = ?", (str(g.user["id"]))
+    ).fetchall()
     return render_template("inventory/index.html", items=items)
 
 
 @bp.route("/create", methods=("GET", "POST"))
+@auth.login_required
 def create():
     if request.method == "POST":
         item_name = request.form["item_name"]
@@ -38,17 +53,9 @@ def create():
     return render_template("inventory/create.html")
 
 
-def get_item(id):
-    item = get_db().execute("SELECT * FROM items WHERE id = ?", (id,)).fetchone()
-
-    if item is None:
-        abort(404, f"Item id {id} doesn't exist.")
-
-    return item
-
-
-@bp.route("/edit/<int:id>", methods=("GET", "POST"))
-def edit(id):
+@bp.route("/<int:id>", methods=("GET", "POST"))
+@auth.login_required
+def view(id):
     item = get_item(id)
 
     if request.method == "POST":
@@ -73,10 +80,11 @@ def edit(id):
             db.commit()
             return redirect(url_for("inventory.index"))
 
-    return render_template("inventory/edit.html", item=item)
+    return render_template("inventory/view.html", item=item)
 
 
-@bp.route("/delete/<int:id>", methods=["DELETE"])
+@bp.route("/<int:id>", methods=["DELETE"])
+@auth.login_required
 def delete(id):
     get_item(id)
     db = get_db()

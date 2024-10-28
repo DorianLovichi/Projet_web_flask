@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+<main class="grid place-items-center py-10">
+
+  <div class="bg-steel-gray-950 text-steel-gray-50 space-y-10 p-12 rounded-md shadow-lg">
+
+    <div class="space-y-5">
+      <h1 class="text-3xl font-semibold">
+        Log in to your account
+      </h1>
+      <p class="text-xs text-steel-gray-400 font-light">
+        Don't have an account? <a href="{{ url_for('auth.register') }}"
+          class="text-blue-violet-400 underline">Register</a>
+      </p>
+    </div>
+
+    <form method="post" class="flex flex-col gap-5">
+      <div class="flex flex-col gap-1">
+        <label for="username" class="text-xs text-steel-gray-500">Username</label>
+        <input id="username" name="username" type="text" required class="px-5 py-3 rounded-md bg-martinique-950" />
+      </div>
+      <div class="flex flex-col gap-1">
+        <label for="password" class="text-xs text-steel-gray-500">Password</label>
+        <input id="password" name="password" type="password" required class="px-5 py-3 rounded-md bg-martinique-950" />
+      </div>
+
+      <button type="submit" class="py-3 mt-3 rounded-md shadow  bg-blue-violet-700 text-white hover:bg-blue-violet-800">
+        Login
+      </button>
+    </form>
+
+  </div>
+</main>
+{% endblock content %}

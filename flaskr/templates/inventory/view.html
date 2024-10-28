@@ -12,17 +12,6 @@
       <h1 class="text-3xl font-semibold">
         Edit item: {{ item.item_name }}
       </h1>
-
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-      {% for category, message in messages %}
-      <div
-        class="p-3 mb-2 rounded-md {% if category == 'error' %}bg-red-500 text-white{% else %}bg-gray-500 text-white{% endif %}">
-        <p>{{ message }}</p>
-      </div>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
     </div>
 
 

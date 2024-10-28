@@ -6,6 +6,7 @@ Mehdi Ghoulam <med@gelk.fr>
 
 - `.venv/` Environnement virtuel Python où sont installées les dépendances
 - `flaskr/` Dossier contenant le code source de l'application
+- `flaskr/auth.py` **Blueprints** pour la gestion de l'authentification
 - `flaskr/inventory.py` **Blueprints** pour la gestion de l'inventaire
 
 ### Glossaire

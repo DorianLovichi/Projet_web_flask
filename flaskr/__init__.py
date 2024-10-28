@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 
 
 def create_app(test_config=None):
@@ -24,10 +24,14 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from . import db, inventory
+    from . import db, auth, inventory
+
+    @app.route("/")
+    def index():
+        return render_template("index.html")
 
     db.init_app(app)
+    app.register_blueprint(auth.bp)
     app.register_blueprint(inventory.bp)
-    app.add_url_rule("/", endpoint="index")
 
     return app
