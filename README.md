@@ -1,6 +1,13 @@
 # Projet Web Flask - M1DWM
 
+- Créateur :
 Mehdi Ghoulam <med@gelk.fr>
+
+- Suite du projet : 
+Michelozzi Matthieu
+Mirande Clémentine
+
+
 
 ## Structure du projet
 
