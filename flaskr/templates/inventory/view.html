@@ -17,6 +17,11 @@
 
     <form method="post" class="flex flex-col gap-5">
       <div class="flex flex-col gap-1">
+        <label for="item_type" class="text-xs text-steel-gray-500">Object type</label>
+        <input id="item_type" name="item_type" type="text" required class="px-5 py-3 rounded-md bg-martinique-950"
+          value="{{ item.item_type }}" />
+      </div>
+      <div class="flex flex-col gap-1">
         <label for="item_name" class="text-xs text-steel-gray-500">Item name</label>
         <input id="item_name" name="item_name" type="text" required class="px-5 py-3 rounded-md bg-martinique-950"
           value="{{ item.item_name }}" />
